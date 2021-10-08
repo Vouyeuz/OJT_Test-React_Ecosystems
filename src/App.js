@@ -6,7 +6,7 @@ import { Login, Homepage, Profile, Course, PageHeader } from "./components";
 
 const AppContainer = styled.div`
   margin: 2rem;
-  color: hsl(360, 70%, 15%);
+  color: hsl(360, 100%, 9%);
   font-family: Arial, Helvetica, sans-serif;
 `;
 

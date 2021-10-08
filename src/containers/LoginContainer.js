@@ -1,19 +1,156 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import styled from "styled-components";
 
-export class LoginContainer extends Component {
-  constructor(props) {
-    super(props);
+const LoginCanvas = styled.div`
+  background-color: white;
+  height: 60vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
 
-    this.state = {};
-  }
+const LoginForm = styled.form`
+  border: 3px solid hsl(240, 30%, 10%, 0.3);
+  border-radius: 8px;
+  background-color: hsl(240, 10%, 85%, 0.8);
+  width: 300px;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  box-shadow: 4px 8px hsl(240, 50%, 10%, 0.3);
+`;
 
-  render() {
-    return (
-      <div>
-        <h1>LoginContainer</h1>
-      </div>
-    );
-  }
-}
+const LoginText = styled.h1`
+  text-align: center;
+  margin: 0;
+`;
+
+const InputLabel = styled.h4`
+  margin-bottom: 0.5rem;
+`;
+
+const InputArea = styled.input`
+  width: 90%;
+  height: 2rem;
+  border: 1px solid;
+  border-radius: 5px;
+  box-shadow: 2px 4px hsl(240, 30%, 20%, 0.3);
+`;
+
+const LoginButton = styled.button`
+  background: #f0c14b;
+  border-radius: 2px;
+  width: 30%;
+  height: 2rem;
+  border: 3px solid;
+  margin-top: 2rem;
+  margin-left: 11rem;
+  border-color: #a88734 #9c7e31 #846a29;
+  box-shadow: 2px 4px hsl(240, 30%, 20%, 0.3);
+`;
+
+const LoginContainer = () => {
+  const [inputUser, setInputUser] = useState('');
+  const [inputPass, setInputPass] = useState('');
+
+
+  return (
+    <LoginCanvas>
+      <LoginForm>
+        <LoginText>Login</LoginText>
+        <label>
+          <InputLabel>Username</InputLabel>
+          <InputArea
+            type="text"
+            placeholder="username..."
+            value={inputUser}
+            onChange={e => setInputUser(e.target.value)}
+          />
+        </label>
+        <label>
+          <InputLabel>Password</InputLabel>
+          <InputArea
+            type="password"
+            placeholder="******"
+            value={inputPass}
+            onChange={e => setInputPass(e.target.value)}
+          />
+        </label>
+        <Link to="/homepage">
+          <LoginButton type="submit">
+            Login
+          </LoginButton>
+        </Link>
+      </LoginForm>
+    </LoginCanvas>
+  );
+};
 
 export default LoginContainer;
+
+// export class LoginContainer extends Component {
+//   constructor(props) {
+//     super(props);
+
+//     this.state = {
+//       authUser: "fahrizal",
+//       authPass: "12345",
+//       userValue: null,
+//       passValue: null,
+//     };
+//   }
+
+//   inputUser = (event) => {
+//     const value = event.currentTarget.value;
+//     this.setState({ userValue: value === "" ? null : value});
+//     console.log(this.userValue);
+//   }
+
+//   inputPass = (event) => {
+//     const value = event.currentTarget.value;
+//     this.setState({ passValue: value === "" ? null : value});
+//     console.log(this.passValue);
+//   }
+
+//   isAuth = (event) => {
+//     if(userValue === !authUser || passValue === !authPass) {
+//       this.button.disabled = true;
+//       alert(e);
+//     }
+//     event.preventDefault();
+//     return
+//   }
+
+//   render() {
+//     return (
+//       <LoginCanvas>
+//         <LoginForm>
+//           <LoginText>Login</LoginText>
+//           <label>
+//             <InputLabel>Username</InputLabel>
+//             <InputArea
+//               type="text"
+//               placeholder="username..."
+//               onChange={this.inputUser}
+//             />
+//           </label>
+//           <label>
+//             <InputLabel>Password</InputLabel>
+//             <InputArea
+//               type="password"
+//               placeholder="******"
+//               onChange={this.inputPass}
+//             />
+//           </label>
+//           <Link to="/homepage">
+//             <LoginButton onClick={this.isAuth} type="submit">Login</LoginButton>
+//           </Link>
+//         </LoginForm>
+//       </LoginCanvas>
+//     );
+//   }
+// }
+
+// export default LoginContainer;
