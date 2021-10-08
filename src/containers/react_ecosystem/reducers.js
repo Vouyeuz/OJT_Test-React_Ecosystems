@@ -1,34 +1,50 @@
-import { USER_LOGIN, USER_LOGOUT } from "./actions";
+import {
+  CREATE_USER,
+  USER_LOGIN_SUCCESS,
+  USER_LOGIN_FAIL,
+  USER_LOGOUT,
+} from "./actions";
 
-// const usersInitialState = {
-//     login = {
-//         username = [],
-//         password = []
-//     },
-//     namaLengkap = [],
-//     tanggalLahir = [],
-//     umur = [],
-//     courses = [
-//         {
-//             namaCourse = [],
-//             isCompleted: false
+const usersInitialState = {
+  username: [],
+  password: [],
+  name: [],
+  birthday: [],
+  age: [],
+  courses: {
+    courseName: [],
+    isCompleted: false,
+  },
+};
 
-//         }
-//     ]
-// };
+export const users = (state = usersInitialState, action) => {
+  const { type, payload } = action;
 
-export const users = (state = [], action) => {
-    const { type, payload } = action;
+  switch (type) {
+    case CREATE_USER: {
+      const { text, password, date, number } = payload;
+      const newUsername = {};
+      const newPassword = {};
 
-    switch (type) {
-        case USER_LOGIN: {
+      const newName = {};
 
-        }
-        case USER_LOGOUT: {
+      const newBirthday = {};
 
-        }
-    
-        default:
-            return state;
+      const newAge = {};
+      return {
+        ...state,
+        username: state.username.concat(newUsername),
+        password: state.password.concat(newPassword),
+        name: state.username.concat(newName),
+        birthday: state.username.concat(newBirthday),
+        age: state.age.concat(newAge),
+      };
     }
-}
+    case USER_LOGIN_SUCCESS:
+    case USER_LOGIN_FAIL:
+    case USER_LOGOUT:
+
+    default:
+      return state;
+  }
+};

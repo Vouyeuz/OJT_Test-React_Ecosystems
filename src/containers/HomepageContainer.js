@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import CourseContainer from "./CourseContainer";
 
 const HomepageCanvas = styled.div`
   border-radius: 0 0 5px 5px;
@@ -51,13 +50,13 @@ const HomepageContainer = ({courses}) => {
   return (
     <HomepageCanvas>
       <WelcomeMessageContainer>
-        <WelcomeMessageHeader>Selamat datang, Fahrizal. </WelcomeMessageHeader>
+        <WelcomeMessageHeader>Selamat datang, username. </WelcomeMessageHeader>
         <WelcomeMessageBody>
           Kamu sudah menyelesaikan 2 courses. Ayo terus semangat pelajari
           courses lainnya.
         </WelcomeMessageBody>
       </WelcomeMessageContainer>
-      <MyCourse>{courses.map(course => <CourseContainer key={course.id} course={course} />)}</MyCourse>
+      <MyCourse>{/*courses.map(course => <CourseContainer key={course.id} course={course} />)*/}</MyCourse>
       <CoursesLibrary>courseslib</CoursesLibrary>
     </HomepageCanvas>
   );

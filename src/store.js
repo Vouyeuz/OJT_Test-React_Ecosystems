@@ -1,9 +1,11 @@
-import { combineReducers, createStore, applyMiddleware } from "redux";
+// gausa pake thunk dulu
+// import { combineReducers, createStore, applyMiddleware } from "redux";
+import { combineReducers, createStore } from "redux";
 import { persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import autoMergeLevel2 from "redux-persist/lib/stateReconciler/autoMergeLevel2";
-import thunk from "redux-thunk";
-import { composeWithDevTools } from "redux-devtools-extension";
+// import thunk from "redux-thunk";
+// import { composeWithDevTools } from "redux-devtools-extension";
 import { users } from "./containers/react_ecosystem/reducers";
 
 const reducers = { users };
@@ -27,7 +29,8 @@ const persistConfig = {
 const rootReducer = combineReducers(reducers);
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
-export const configureStore = createStore(
-  persistedReducer,
-  composeWithDevTools(applyMiddleware(thunk))
-);
+export const configureStore = () => createStore(persistedReducer);
+// export const configureStore = createStore(
+//   persistedReducer,
+//   composeWithDevTools(applyMiddleware(thunk))
+// );

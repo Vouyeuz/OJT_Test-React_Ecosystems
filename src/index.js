@@ -6,14 +6,14 @@ import { persistStore } from "redux-persist";
 import { configureStore } from "./store";
 import App from "./App.js";
 
-// const store = configureStore();
-// const persistor = persistStore(store);
+const store = configureStore();
+const persistor = persistStore(store);
 
 ReactDOM.render(
-  // <Provider store={store}>
-  //   <PersistGate persistor={persistor}>
-  <App />,
-  //   </PersistGate>
-  // </Provider>
+  <Provider store={store}>
+    <PersistGate persistor={persistor}>
+  <App />
+    </PersistGate>
+  </Provider>,
   document.getElementById("root")
 );

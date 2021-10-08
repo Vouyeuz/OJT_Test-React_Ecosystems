@@ -105,7 +105,7 @@ const LoginContainer = () => {
           <LoginButton type="submit">Log in</LoginButton>
         </Link>
         <SignUpArea>
-          <p>Belum punya akun? Daftar sekarang!</p>
+          <p>Have no account? Register now!</p>
           <Link to="/signup">
             <SignUpButton>Sign Up</SignUpButton>
           </Link>
