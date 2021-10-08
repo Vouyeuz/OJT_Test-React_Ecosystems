@@ -4,13 +4,14 @@ import storage from "redux-persist/lib/storage";
 import autoMergeLevel2 from "redux-persist/lib/stateReconciler/autoMergeLevel2";
 import thunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
+import { users } from "./containers/react_ecosystem/reducers";
 
-const reducers = {};
+const reducers = { users };
 
 const persistConfig = {
   key: "root",
   storage,
-// find out about how 3 states applies.
+  // find out about how 3 states applies.
   stateReconciler: autoMergeLevel2,
 };
 

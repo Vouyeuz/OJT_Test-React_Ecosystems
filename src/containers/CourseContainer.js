@@ -1,19 +1,14 @@
-import React, { Component } from "react";
+import React from "react";
+import styled from "styled-components";
 
-export class CourseContainer extends Component {
-  constructor(props) {
-    super(props);
+const CourseCanvas = styled.div`
+  border-radius: 0 0 5px 5px;
+  min-height: 82.5vh;
+  background: hsl(240, 70%, 30%, 0.25);
+`;
 
-    this.state = {};
-  }
-
-  render() {
-    return (
-      <div>
-        <h1>CourseContainer</h1>
-      </div>
-    );
-  }
-}
+const CourseContainer = ({courses = []}) => {
+  return <CourseCanvas>Course</CourseCanvas>;
+};
 
 export default CourseContainer;

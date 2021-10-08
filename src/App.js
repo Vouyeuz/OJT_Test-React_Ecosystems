@@ -2,10 +2,10 @@ import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import styled from "styled-components";
 import { hot } from "react-hot-loader";
-import { Login, Homepage, Profile, Course, PageHeader } from "./components";
+import { Login, SignUp, Homepage, Profile, Course, PageHeader } from "./components";
 
 const AppContainer = styled.div`
-  margin: 2rem;
+  box-sizing: border-box;
   color: hsl(360, 100%, 9%);
   font-family: Arial, Helvetica, sans-serif;
 `;
@@ -26,6 +26,9 @@ const App = () => {
           <Route exact path="/course">
             <PageHeader />
             <Course />
+          </Route>
+          <Route exact path="/signup">
+            <SignUp />
           </Route>
           <Route exact path="/">
             <Login />

@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 const LoginCanvas = styled.div`
   background-color: white;
-  height: 60vh;
+  height: 80vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -51,10 +51,33 @@ const LoginButton = styled.button`
   box-shadow: 2px 4px hsl(240, 30%, 20%, 0.3);
 `;
 
-const LoginContainer = () => {
-  const [inputUser, setInputUser] = useState('');
-  const [inputPass, setInputPass] = useState('');
+const SignUpArea = styled.div`
+margin-top: 2rem;
+padding: 1rem;
+border: 1px solid hsl(240, 30%, 20%, 0.3);
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+`;
 
+const SignUpButton = styled.button`
+  background: #f0c14b;
+  font-weight: 700;
+  border-radius: 2px;
+  width: 100%;
+  height: 2rem;
+  border: 3px solid;
+  margin-top: 1rem;
+  margin-right: 50px;
+  border-color: #a88734 #9c7e31 #846a29;
+  box-shadow: 2px 4px hsl(240, 30%, 20%, 0.3);
+`;
+
+
+const LoginContainer = () => {
+  const [inputUser, setInputUser] = useState("");
+  const [inputPass, setInputPass] = useState("");
 
   return (
     <LoginCanvas>
@@ -66,7 +89,7 @@ const LoginContainer = () => {
             type="text"
             placeholder="username..."
             value={inputUser}
-            onChange={e => setInputUser(e.target.value)}
+            onChange={(e) => setInputUser(e.target.value)}
           />
         </label>
         <label>
@@ -75,14 +98,18 @@ const LoginContainer = () => {
             type="password"
             placeholder="******"
             value={inputPass}
-            onChange={e => setInputPass(e.target.value)}
+            onChange={(e) => setInputPass(e.target.value)}
           />
         </label>
         <Link to="/homepage">
-          <LoginButton type="submit">
-            Login
-          </LoginButton>
+          <LoginButton type="submit">Log in</LoginButton>
         </Link>
+        <SignUpArea>
+          <p>Belum punya akun? Daftar sekarang!</p>
+          <Link to="/signup">
+            <SignUpButton>Sign Up</SignUpButton>
+          </Link>
+        </SignUpArea>
       </LoginForm>
     </LoginCanvas>
   );
