@@ -21,7 +21,8 @@ const MyCourseDetail = styled(NameDetail)`
   grid-area: e;
 `;
 
-const ProfileDetailContainer = ({ profile }) => {
+const ProfileDetailContainer = ({ profiles }) => {
+  const profile = profiles.profile;
   return (
     <div>
       <NameDetail>{`Nama Lengkap: ${profile.name}`}</NameDetail>

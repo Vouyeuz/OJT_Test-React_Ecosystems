@@ -1,6 +1,9 @@
 import React from "react";
+import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { userLogout } from "./react_ecosystem/actions";
+import { getAuthUserProfile } from "./react_ecosystem/selectors";
 
 const PageHeaderCanvas = styled.div`
   border-radius: 5px 5px 0 0;
@@ -55,13 +58,15 @@ const NavItem = styled.p`
   padding: 1rem;
 `;
 
-const PageHeaderContainer = () => {
+const PageHeaderContainer = ({profiles, onClickedLoggedOut}) => {
   return (
     <PageHeaderCanvas>
       <UserArea>
         <Username>{`username`}</Username>
         <Link to="/">
-          <LogoutButton>Log out</LogoutButton>
+          <LogoutButton
+            onClick={() => onClickedLoggedOut()}  
+          >Log out</LogoutButton>
         </Link>
       </UserArea>
       <NavArea>
@@ -73,4 +78,12 @@ const PageHeaderContainer = () => {
   );
 };
 
-export default PageHeaderContainer;
+const mapStateToProps = state => ({
+  // profiles: getAuthUserProfile(state)
+});
+
+const mapDispatchToProps = dispatch => ({
+  onClickedLoggedOut: () => dispatch(userLogout()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(PageHeaderContainer);

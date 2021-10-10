@@ -22,21 +22,21 @@ const ProfileForm = styled.div`
     "e";
 `;
 
-const ProfileContainer = ({ authUserProfiles }) => {
 
+const ProfileContainer = ({ userProfiles }) => {
   return (
     <ProfileCanvas>
       <ProfileForm>
-        {profiles.map((profile) => (
-          <ProfileDetailContainer key={profile.username} profile={profile} />
-        ))}
+        {userProfiles.map((profiles) => (
+          <ProfileDetailContainer key={Number.toString()} profiles={profiles} />
+          ))}
       </ProfileForm>
     </ProfileCanvas>
   );
 };
 
 const mapStateToProps = (state) => ({
-  authUserProfiles: getAuthUserProfile(state),
+  userProfiles: getAuthUserProfile(state),
 });
 
 export default connect(mapStateToProps, null)(ProfileContainer);

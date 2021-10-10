@@ -11,9 +11,8 @@ export const userLoginFail = (text) => ({
 });
 
 export const USER_LOGOUT = "USER_LOGOUT";
-export const userLogout = (text) => ({
+export const userLogout = () => ({
   type: USER_LOGOUT,
-  payload: text,
 });
 
 export const CREATE_USER = "CREATE_USER";
