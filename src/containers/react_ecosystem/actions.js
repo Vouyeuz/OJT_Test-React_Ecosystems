@@ -16,14 +16,14 @@ export const userLogout = (text) => ({
   payload: text,
 });
 
-// export const CREATE_USER = 'CREATE_USER';
-// export const createUser = ({text, password, date, number}) => ({
-//     type: CREATE_USER,
-//     payload: {text, password, date, number}
-// });
-
-export const CREATE_USER = "CREATE_USER";
-export const createUser = (text) => ({
-  type: CREATE_USER,
-  payload: { text },
+export const CREATE_USER = 'CREATE_USER';
+export const createUser = ({text, password, date, number}) => ({
+    type: CREATE_USER,
+    payload: {text, password, date, number}
 });
+
+// export const CREATE_USER = "CREATE_USER";
+// export const createUser = (text) => ({
+//   type: CREATE_USER,
+//   payload: { text },
+// });
