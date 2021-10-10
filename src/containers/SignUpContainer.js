@@ -17,7 +17,7 @@ const SignUpForm = styled.form`
   border: 1px solid grey;
   min-height: 82.5vh;
   background: hsl(240, 70%, 60%, 0.2);
-  padding: 1rem;
+  padding: 1.5rem;
   display: flex;
   flex-direction: column;
   box-shadow: 4px 8px hsl(240, 50%, 10%, 0.3);
@@ -30,14 +30,16 @@ const SignUpText = styled.h1`
 
 const InputLabel = styled.h4`
   margin-bottom: 0.5rem;
+  margin-left: 1rem;
 `;
 
 const InputArea = styled.input`
   width: 90%;
   height: 2rem;
+  margin-left: 1rem;
   border: 1px solid;
   border-radius: 5px;
-  box-shadow: 8px 16px hsl(240, 30%, 20%, 0.3);
+  box-shadow: 4px 8px hsl(240, 30%, 20%, 0.3);
 `;
 
 const SignUpButton = styled.button`
@@ -49,7 +51,7 @@ const SignUpButton = styled.button`
   border: 3px solid;
   margin-top: 1rem;
   border-color: #a88734 #9c7e31 #846a29;
-  box-shadow: 2px 4px hsl(240, 30%, 20%, 0.3);
+  box-shadow: 4px 8px hsl(240, 30%, 20%, 0.3);
 `;
 
 const SignUpContainer = ({ onClickedCreate }) => {
@@ -132,7 +134,6 @@ const SignUpContainer = ({ onClickedCreate }) => {
             setPhone("");
             setUsername("");
             setPassword("");
-            console.log(name);
           }}
         >
           Sign Up

@@ -14,21 +14,21 @@ const UsernameDetail = styled(NameDetail)`
 const BirthdayDetail = styled(NameDetail)`
   grid-area: c;
 `;
-const AgeDetail = styled(NameDetail)`
+const PhoneDetail = styled(NameDetail)`
   grid-area: d;
 `;
 const MyCourseDetail = styled(NameDetail)`
   grid-area: e;
 `;
 
-const ProfileDetailContainer = ({ name }) => {
+const ProfileDetailContainer = ({ profile }) => {
   return (
     <div>
-      <NameDetail>{`Nama Lengkap: ${name.text}`}</NameDetail>
-      {/* <UsernameDetail>{`Username: ${username}`}</UsernameDetail>
-      <BirthdayDetail>{`Tanggal Lahir: ${birthday}`}</BirthdayDetail>
-      <AgeDetail>{`Umur: ${age}`}</AgeDetail>
-      <MyCourseDetail>{`Course Diambil: `}</MyCourseDetail> */}
+      <NameDetail>{`Nama Lengkap: ${profile.name}`}</NameDetail>
+      <UsernameDetail>{`Username: ${profile.username}`}</UsernameDetail>
+      <BirthdayDetail>{`Tanggal Lahir: ${profile.birthday}`}</BirthdayDetail>
+      <PhoneDetail>{`Nomor HP: ${profile.phone}`}</PhoneDetail>
+      <MyCourseDetail>{`Course Diambil: `}</MyCourseDetail>
     </div>
   );
 };

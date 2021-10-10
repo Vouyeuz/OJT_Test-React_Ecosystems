@@ -5,16 +5,26 @@ import {
   USER_LOGOUT,
 } from "./actions";
 
+// const initialState = {
+//   username: [],
+//   password: [],
+//   name: [],
+//   birthday: [],
+//   phone: [],
+//   courses: {
+//     courseName: [],
+//     isCompleted: false,
+//   },
+// };
+
 const initialState = {
-  username: [],
-  password: [],
-  name: [],
-  birthday: [],
-  phone: [],
-  courses: {
-    courseName: [],
-    isCompleted: false,
-  },
+  authUsers: [
+    // ndak perlu dideklarasi dari initialState, biar CREATE_USER pertama itu jadi object index ke[0]. Jadi cukup defined struktur profile user di switch statement. alhamdulillah
+    // {
+    // isLoggedIn: false,
+    // profile: []
+    // }
+  ]
 };
 
 export const users = (state = initialState, action) => {
@@ -22,23 +32,22 @@ export const users = (state = initialState, action) => {
 
   switch (type) {
     case CREATE_USER: {
-      const { text, password, date, number } = payload;
+      const {
+        text: { username, password, name, birthday, phone },
+      } = payload;
 
-      const newUsername = { text };
-      const newPassword = { password };
-      const newName = { text };
-      const newBirthday = { date };
-      const newPhone = { number };
-      
-
-      return {
-        ...state,
-        username: state.username.concat(newUsername),
-        password: state.password.concat(newPassword),
-        name: state.name.concat(newName),
-        birthday: state.birthday.concat(newBirthday),
-        phone: state.phone.concat(newPhone)
+      const newUser = {
+        isLoggedIn: true,
+        profile: {
+          username: username,
+          password: password,
+          name: name,
+          birthday: birthday,
+          phone: phone
+        }
       };
+
+      return state.authUsers.concat(newUser);
     }
     case USER_LOGIN_SUCCESS:
     case USER_LOGIN_FAIL:

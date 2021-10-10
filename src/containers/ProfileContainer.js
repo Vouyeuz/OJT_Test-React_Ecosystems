@@ -2,12 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
 import ProfileDetailContainer from "./ProfileDetailContainer";
-import {
-  getUsername,
-  getName,
-  getBirthday,
-  getAge,
-} from "./react_ecosystem/selectors";
+import { getAuthUserProfile } from "./react_ecosystem/selectors";
 
 const ProfileCanvas = styled.div`
   border-radius: 0 0 5px 5px;
@@ -27,14 +22,13 @@ const ProfileForm = styled.div`
     "e";
 `;
 
+const ProfileContainer = ({ authUserProfiles }) => {
 
-
-const ProfileContainer = ({ names }) => {
   return (
     <ProfileCanvas>
       <ProfileForm>
-        {names.map((name) => (
-          <ProfileDetailContainer key={name.text} name={name} />
+        {profiles.map((profile) => (
+          <ProfileDetailContainer key={profile.username} profile={profile} />
         ))}
       </ProfileForm>
     </ProfileCanvas>
@@ -42,11 +36,7 @@ const ProfileContainer = ({ names }) => {
 };
 
 const mapStateToProps = (state) => ({
-  // username: getUsername(state),
-  names: state.users,
-  // birthday: getBirthday(state),
-  // age: getAge(state),
-  // courses: getCourses(state),
+  authUserProfiles: getAuthUserProfile(state),
 });
 
-export default connect(mapStateToProps)(ProfileContainer);
+export default connect(mapStateToProps, null)(ProfileContainer);
