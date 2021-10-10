@@ -4,7 +4,11 @@ import styled from "styled-components";
 
 const PageHeaderCanvas = styled.div`
   border-radius: 5px 5px 0 0;
-  background: hsl(240, 70%, 30%, 0.9);
+  background: linear-gradient(
+    180deg,
+    hsl(180, 70%, 0%),
+    hsl(270, 100%, 18%)
+  );
   margin: 0;
   height: 7rem;
   display: flex;

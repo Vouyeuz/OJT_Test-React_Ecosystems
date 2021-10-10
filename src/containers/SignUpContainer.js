@@ -37,7 +37,7 @@ const InputArea = styled.input`
   height: 2rem;
   border: 1px solid;
   border-radius: 5px;
-  box-shadow: 2px 4px hsl(240, 30%, 20%, 0.3);
+  box-shadow: 8px 16px hsl(240, 30%, 20%, 0.3);
 `;
 
 const SignUpButton = styled.button`
@@ -58,10 +58,8 @@ const SignUpContainer = ({ onClickedCreate }) => {
   const [inputAge, setInputAge] = useState("");
   const [inputUsername, setInputUsername] = useState("");
   const [inputPassword, setInputPassword] = useState("");
-  //   const [inputCourses, setInputCourses] = useState("");
 
-  console.log(inputBirthday);
-
+  
   return (
     <SignUpCanvas>
       <SignUpForm>
@@ -76,7 +74,6 @@ const SignUpContainer = ({ onClickedCreate }) => {
           onChange={(e) => setInputName(e.target.value)}
           type="text"
           placeholder="Enter your fullname."
-          required
         />
         <InputLabel>
           <b>Date of Birth:</b>
@@ -94,18 +91,7 @@ const SignUpContainer = ({ onClickedCreate }) => {
           onChange={(e) => setInputAge(e.target.value)}
           type="number"
           placeholder="Enter your age."
-          required
         />
-        {/* <InputLabel>
-          <b>Courses</b>
-        </InputLabel>
-        <InputArea
-          value={inputCourses}
-          onChange={(e) => setInputCourses(e.target.value)}
-          type="submit"
-          placeholder="Enter your age."
-          required
-        /> */}
 
         <InputLabel>
           <b>Username</b>
@@ -115,7 +101,6 @@ const SignUpContainer = ({ onClickedCreate }) => {
           onChange={(e) => setInputUsername(e.target.value)}
           type="text"
           placeholder="Enter username."
-          required
         />
 
         <InputLabel>
@@ -126,7 +111,6 @@ const SignUpContainer = ({ onClickedCreate }) => {
           onChange={(e) => setInputPassword(e.target.value)}
           type="password"
           placeholder="Enter Password"
-          required
         />
 
         <p>
@@ -135,21 +119,32 @@ const SignUpContainer = ({ onClickedCreate }) => {
         </p>
 
         <SignUpButton
-          onClick={() => {
-            onClickedCreate(
-              inputName,
-              inputBirthday,
-              inputAge,
-              inputUsername,
-              inputPassword
-            );
+          type="submit"
+          onClick={(event) => {
+            event.preventDefault();
+            onClickedCreate(inputName);
             setInputName("");
-            setInputBirthday("");
-            setInputAge("");
-            setInputUsername("");
-            setInputPassword("");
+            console.log(setInputName)
+            // setInputBirthday("");
+            // setInputAge("");
+            // setInputUsername("");
+            // setInputPassword("");
           }}
-          href="/homepage"
+          // onClick={() => {
+          //   onClickedCreate({
+          //     inputName,
+          //     inputBirthday,
+          //     inputAge,
+          //     inputCourses,
+          //     inputUsername,
+          //     inputPassword,
+          //   });
+          //   // setInputName("");
+          //   // setInputBirthday("");
+          //   // setInputAge("");
+          //   // setInputUsername("");
+          //   // setInputPassword("");
+          // }}
         >
           Sign Up
         </SignUpButton>
@@ -171,9 +166,12 @@ const SignUpContainer = ({ onClickedCreate }) => {
 
 // });
 
+// const mapDispatchToProps = (dispatch) => ({
+//   onClickedCreate: ({ text, password, date, number }) =>
+//     dispatch(createUser({ text, password, date, number })),
+// });
 const mapDispatchToProps = (dispatch) => ({
-  onClickedCreate: (text, password, date, number) =>
-    dispatch(createUser(text, password, date, number)),
+  onClickedCreate: (text) => dispatch(createUser(text)),
 });
 
 export default connect(null, mapDispatchToProps)(SignUpContainer);
