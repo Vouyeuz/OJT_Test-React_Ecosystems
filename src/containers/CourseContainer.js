@@ -73,22 +73,29 @@ export class CourseContainer extends Component {
   };
   render() {
 
-    const completedCourses = this.props.courses.filter(completedCourse => this.props.courses.isCompleted === true);
-    const incompleteCourses = this.props.courses.filter(incompleteCourse => this.props.courses.isCompleted === false);
-    console.log(completedCourses);
-    console.log(incompleteCourses);
+    const completedCourses = this.props.courses.filter(completed => completed.isCompleted === true);
+    const incompleteCourses = this.props.courses.filter(incomplete => incomplete.isCompleted === false);
+    
     return (
       <CourseCanvas>
         <MyCoursesTitle>My Courses List</MyCoursesTitle>
         <IncompleteCourses isCompleted={this.props.isCompleted}>
           Courses In Progress:
         </IncompleteCourses>
+        {incompleteCourses.map((course) => (
+          <CourseItemsComponent
+            key={course.id}
+            name={course.courseName}
+            progress={course.progress}
+            isCompleted={course.isCompleted}
+          />
+        ))}
 
         <CompletedCourses isCompleted={this.props.isCompleted}>
           Completed Courses:
         </CompletedCourses>
 
-        {this.props.courses.map((course) => (
+        {completedCourses.map((course) => (
           <CourseItemsComponent
             key={course.id}
             name={course.courseName}
