@@ -1,5 +1,7 @@
-import React, { Component } from "react";
+import React from "react";
+import { connect } from "react-redux";
 import styled from "styled-components";
+import { markCourseAsCompleted, removeCourse } from "./react_ecosystem/actions";
 
 const CourseItemCanvas = styled.div`
   background: white;
@@ -16,8 +18,8 @@ const CourseArea = styled.div`
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: repeat(2, 1fr);
   grid-template-areas:
-    "a a a a c"
-    "b b b . c";
+    "a a a b c"
+    ". . . b c";
 `;
 
 const CourseName = styled.h4`
@@ -28,11 +30,11 @@ const CourseName = styled.h4`
   margin-bottom: 0;
 `;
 
-
-const CourseStatus = styled.div`
-  grid-area: c;
+const CourseButton = styled.button`
+  grid-area: b;
+  margin-left: 0.5rem;
   font-weight: 700;
-  font-size: 1rem;;
+  font-size: 1rem;
   background: ${(props) => (props.completion ? "green" : "yellow")};
   border: 1px solid grey;
   border-radius: 5px;
@@ -41,19 +43,49 @@ const CourseStatus = styled.div`
   align-items: center;
 `;
 
-export class CourseItemsComponent extends Component {
-  render() {
-    
+const RemoveButton = styled.button`
+  grid-area: c;
+  margin-left: 0.5rem;
+  font-weight: 700;
+  font-size: 1rem;
+  background: red;
+  border: 1px solid grey;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
 
-    return (
-      <CourseItemCanvas>
-        <CourseArea>
-          <CourseName>{`${this.props.name}`}</CourseName>
-          <CourseStatus completion={this.props.isCompleted}>{this.props.isCompleted}</CourseStatus>
-        </CourseArea>
-      </CourseItemCanvas>
-    );
-  }
-}
 
-export default CourseItemsComponent;
+const CourseItemsComponent = ({course, onClickedCompleted, onClickedRemove}) => {
+  const courseStatus = course.isCompleted ? "Completed" : "Learn";
+  const courseName = course.courseName;
+
+  return (
+    <CourseItemCanvas>
+      <CourseArea>
+        <CourseName>{`${courseName}`}</CourseName>
+        <CourseButton
+          onClick={() => {
+            onClickedCompleted(courseName);
+          }}
+          completion={course.isCompleted}
+        >{`${courseStatus}`}</CourseButton>
+        <RemoveButton
+          onClick={() => {
+            onClickedRemove(courseName);
+          }}
+        >
+          Remove
+        </RemoveButton>
+      </CourseArea>
+    </CourseItemCanvas>
+  );
+};
+
+const mapDispatchToProps = (dispatch) => ({
+  onClickedCompleted: (text) => dispatch(markCourseAsCompleted(text)),
+  onClickedRemove: (text) => dispatch(removeCourse(text)),
+});
+
+export default connect(null, mapDispatchToProps)(CourseItemsComponent);

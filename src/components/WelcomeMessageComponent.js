@@ -12,13 +12,14 @@ const WelcomeMessageBody = styled(WelcomeMessageHeader)`
   font-weight: 400;
 `;
 
-const WelcomeMessageComponent = ({ profiles }) => {
-  const profile = profiles.profile;
+const WelcomeMessageComponent = ({ profile }) => {
+  // let totalCompletedCourses = course.isCompleted.length.toString();
+  // ${totalCompletedCourses}
   return (
     <div>
       <WelcomeMessageHeader>{`Hello, ${profile.username}!`}</WelcomeMessageHeader>
       <WelcomeMessageBody>
-        You've 3 courses completed, yeay! Keep it up, more and more courses will coming after you.
+        {`You've courses completed, yeay! Keep it up, more and more courses will coming after you.`}
       </WelcomeMessageBody>
     </div>
   );

@@ -43,12 +43,12 @@ const CoursesLibrary = styled(MyCourse)`
   background: hsl(240, 70%, 30%, 0);
 `;
 
-const HomepageContainer = ({ userProfiles }) => {
+const HomepageContainer = ({ profiles }) => {
   return (
     <HomepageCanvas>
       <WelcomeMessageContainer>
-        {userProfiles.map((profiles) => (
-          <WelcomeMessageComponent key={Number.toString()} profiles={profiles}/> 
+        {profiles.map((profile) => (
+          <WelcomeMessageComponent key={Number.toString()} profile={profile}/> 
         ))}
       </WelcomeMessageContainer>
       <MyCourse>
@@ -62,7 +62,7 @@ const HomepageContainer = ({ userProfiles }) => {
 };
 
 const mapStateToProps = (state) => ({
-  userProfiles: getAuthUserProfile(state),
+  profiles: getAuthUserProfile(state),
 });
 
 export default connect(mapStateToProps)(HomepageContainer);

@@ -3,6 +3,8 @@ import {
   USER_LOGIN_SUCCESS,
   USER_LOGIN_FAIL,
   USER_LOGOUT,
+  MARK_COURSE_AS_COMPLETED,
+  REMOVE_COURSE,
 } from "./actions";
 
 // const initialState = {
@@ -35,14 +37,11 @@ export const users = (state = initialState, action) => {
       } = payload;
 
       const newUser = {
-        isLoggedIn: true,
-        profile: {
-          username: username,
-          password: password,
-          name: name,
-          birthday: birthday,
-          phone: phone,
-        },
+        username: username,
+        password: password,
+        name: name,
+        birthday: birthday,
+        phone: phone,
       };
 
       return state.concat(newUser);
@@ -50,10 +49,34 @@ export const users = (state = initialState, action) => {
     case USER_LOGIN_SUCCESS:
     case USER_LOGIN_FAIL:
     case USER_LOGOUT: {
+      // const { text: { username, password, name, birthday, phone } } = payload;
       // return {
-      //   ...state,
-      //   users: { ...users, isLoggedIn: false },
-      // };
+
+      // }
+    }
+
+    case MARK_COURSE_AS_COMPLETED: {
+      const { text } = payload;
+      // sama saja kayak buat data baru di state, soalnya awalnya cuma ada di local state, bukan di Redux-store.
+      const completedCourse = {
+        courses: {
+          text,
+          isCompleted: true,
+        },
+      };
+      return state.concat(completedCourse);
+      // return state.map((course) => {
+      //   if (course.courseName === text) {
+      //     return { ...course, isCompleted: true };
+      //   }
+      //   return course;
+      // });
+    }
+    case REMOVE_COURSE: {
+      const { text } = payload;
+      return state.filter((course) => {
+        course.isCompleted !== text;
+      });
     }
 
     default:

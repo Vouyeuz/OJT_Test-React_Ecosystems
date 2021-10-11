@@ -30,13 +30,13 @@ const NavItem = styled.p`
   padding: 1rem;
 `;
 
-const PageHeaderContainer = ({ userProfiles, onClickedLoggedOut }) => {
+const PageHeaderContainer = ({profiles, onClickedLoggedOut }) => {
   return (
     <PageHeaderCanvas>
-      {userProfiles.map((profiles) => (
+      {profiles.map((profile) => (
         <UserAreaComponent
           key={Number.toString()}
-          profiles={profiles}
+          profile={profile}
           onClickedLoggedOut={onClickedLoggedOut}
         />
       ))}
@@ -56,7 +56,7 @@ const PageHeaderContainer = ({ userProfiles, onClickedLoggedOut }) => {
 };
 
 const mapStateToProps = (state) => ({
-  userProfiles: getAuthUserProfile(state),
+  profiles: getAuthUserProfile(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

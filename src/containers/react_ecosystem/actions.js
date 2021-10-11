@@ -21,8 +21,14 @@ export const createUser = (text) => ({
   payload: { text },
 });
 
-// export const CREATE_USER = "CREATE_USER";
-// export const createUser = (text) => ({
-//   type: CREATE_USER,
-//   payload: { text },
-// });
+export const MARK_COURSE_AS_COMPLETED = "MARK_COURSE_AS_COMPLETED";
+export const markCourseAsCompleted = (text) => ({
+  type: MARK_COURSE_AS_COMPLETED,
+  payload: { text },
+});
+
+export const REMOVE_COURSE = "REMOVE_COURSE";
+export const removeCourse = (text) => ({
+  type: REMOVE_COURSE,
+  payload: { text },
+});

@@ -27,8 +27,7 @@ const LogoutButton = styled.button`
   box-shadow: 2px 4px hsl(240, 30%, 20%, 0.3);
 `;
 
-const UserAreaComponent = ({ profiles, onClickedLoggedOut }) => {
-  const profile = profiles.profile;
+const UserAreaComponent = ({ profile, onClickedLoggedOut }) => {
   return (
     <div>
       <UserArea>

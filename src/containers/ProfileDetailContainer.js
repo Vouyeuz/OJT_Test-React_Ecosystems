@@ -1,13 +1,12 @@
 import React from "react";
 import styled from "styled-components";
-import CourseContainer from "./CourseContainer";
 
 const NameDetail = styled.div`
   grid-area: a;
   background: hsl(240, 70%, 30%, 0.5);
   padding: 1rem;
-  margin-bottom: 1rem;
-  box-shadow: 1px 4px grey;
+  box-shadow: 0 4px grey;
+  font-weight: 700;
 `;
 const UsernameDetail = styled(NameDetail)`
   grid-area: b;
@@ -21,12 +20,8 @@ const AgeDetail = styled(NameDetail)`
 const PhoneDetail = styled(NameDetail)`
   grid-area: d;
 `;
-const MyCourseDetail = styled(NameDetail)`
-  grid-area: e;
-`;
 
-const ProfileDetailContainer = ({ profiles }) => {
-  const profile = profiles.profile;
+const ProfileDetailContainer = ({ profile }) => {
 
   const birthdate = new Date(profile.birthday).toUTCString();
   let currentDate = new Date().toUTCString();
@@ -34,13 +29,11 @@ const ProfileDetailContainer = ({ profiles }) => {
 
   return (
     <div>
-      <NameDetail>{`Nama Lengkap: ${profile.name}`}</NameDetail>
+      <NameDetail>{`Fullname: ${profile.name}`}</NameDetail>
       <UsernameDetail>{`Username: ${profile.username}`}</UsernameDetail>
-      <BirthdayDetail>{`Tanggal Lahir: ${profile.birthday}`}</BirthdayDetail>
-      <AgeDetail>{`Usia: ${age} tahun`}</AgeDetail>
-      <PhoneDetail>{`Nomor HP: ${profile.phone}`}</PhoneDetail>
-      <MyCourseDetail>{`Course Diambil:`}</MyCourseDetail>
-      <CourseContainer />
+      <BirthdayDetail>{`Birth of date: ${profile.birthday}`}</BirthdayDetail>
+      <AgeDetail>{`Age: ${age} years old`}</AgeDetail>
+      <PhoneDetail>{`Mobile: ${profile.phone}`}</PhoneDetail>
     </div>
   );
 };
