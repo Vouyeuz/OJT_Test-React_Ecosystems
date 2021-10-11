@@ -1,6 +1,6 @@
-export { default as LoginContainer } from "./LoginContainer";
-export { default as SignUpContainer } from "./SignUpContainer";
-export { default as HomepageContainer } from "./HomepageContainer";
-export { default as ProfileContainer } from "./ProfileContainer";
-export { default as CourseContainer } from "./CourseContainer";
-export { default as PageHeaderContainer } from "./PageHeaderContainer";
+export { default as Login } from "./LoginContainer";
+export { default as SignUp } from "./SignUpContainer";
+export { default as Homepage } from "./HomepageContainer";
+export { default as Profile } from "./ProfileContainer";
+export { default as Course } from "./CourseContainer";
+export { default as PageHeader } from "./PageHeaderContainer";

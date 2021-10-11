@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import CourseContainer from "./CourseContainer";
+import CourseContainer from "../containers/CourseContainer";
 
 const NameDetail = styled.div`
   grid-area: a;
