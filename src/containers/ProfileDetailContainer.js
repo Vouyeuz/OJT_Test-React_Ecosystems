@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import CourseContainer from "./CourseContainer";
 
 const NameDetail = styled.div`
   grid-area: a;
@@ -39,6 +40,7 @@ const ProfileDetailContainer = ({ profiles }) => {
       <AgeDetail>{`Usia: ${age} tahun`}</AgeDetail>
       <PhoneDetail>{`Nomor HP: ${profile.phone}`}</PhoneDetail>
       <MyCourseDetail>{`Course Diambil:`}</MyCourseDetail>
+      <CourseContainer />
     </div>
   );
 };

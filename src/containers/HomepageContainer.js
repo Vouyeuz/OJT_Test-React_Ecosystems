@@ -1,7 +1,10 @@
 import React from "react";
+import { connect } from "react-redux";
 import styled from "styled-components";
 import CoursesLibraryComponent from "../components/CoursesLibraryComponent";
+import WelcomeMessageComponent from "../components/WelcomeMessageComponent";
 import CourseContainer from "./CourseContainer";
+import { getAuthUserProfile } from "./react_ecosystem/selectors";
 
 const HomepageCanvas = styled.div`
   border-radius: 0 0 5px 5px;
@@ -28,17 +31,6 @@ const WelcomeMessageContainer = styled.div`
   padding-left: 10px;
 `;
 
-const WelcomeMessageHeader = styled.p`
-  font-size: 2rem;
-  font-weight: 700;
-  margin-bottom: -10px;
-`;
-
-const WelcomeMessageBody = styled(WelcomeMessageHeader)`
-  font-size: 1rem;
-  font-weight: 400;
-`;
-
 const MyCourse = styled.div`
   grid-area: b;
   background: hsl(240, 70%, 30%, 0.1);
@@ -48,23 +40,29 @@ const MyCourse = styled.div`
 
 const CoursesLibrary = styled(MyCourse)`
   grid-area: c;
-  background: hsl(240, 70%, 30%, 0.);
+  background: hsl(240, 70%, 30%, 0);
 `;
 
-const HomepageContainer = () => {
+const HomepageContainer = ({ userProfiles }) => {
   return (
     <HomepageCanvas>
       <WelcomeMessageContainer>
-        <WelcomeMessageHeader>Selamat datang, username. </WelcomeMessageHeader>
-        <WelcomeMessageBody>
-          Kamu sudah menyelesaikan 2 courses. Ayo terus semangat pelajari
-          courses lainnya.
-        </WelcomeMessageBody>
+        {userProfiles.map((profiles) => (
+          <WelcomeMessageComponent key={Number.toString()} profiles={profiles}/> 
+        ))}
       </WelcomeMessageContainer>
-      <MyCourse><CourseContainer /></MyCourse>
-      <CoursesLibrary><CoursesLibraryComponent /></CoursesLibrary>
+      <MyCourse>
+        <CourseContainer />
+      </MyCourse>
+      <CoursesLibrary>
+        <CoursesLibraryComponent />
+      </CoursesLibrary>
     </HomepageCanvas>
   );
 };
 
-export default HomepageContainer;
+const mapStateToProps = (state) => ({
+  userProfiles: getAuthUserProfile(state),
+});
+
+export default connect(mapStateToProps)(HomepageContainer);
