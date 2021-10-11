@@ -14,6 +14,9 @@ const UsernameDetail = styled(NameDetail)`
 const BirthdayDetail = styled(NameDetail)`
   grid-area: c;
 `;
+const AgeDetail = styled(NameDetail)`
+  grid-area: e;
+`;
 const PhoneDetail = styled(NameDetail)`
   grid-area: d;
 `;
@@ -23,15 +26,22 @@ const MyCourseDetail = styled(NameDetail)`
 
 const ProfileDetailContainer = ({ profiles }) => {
   const profile = profiles.profile;
+
+  const birthdate = new Date(profile.birthday).toUTCString();
+  let currentDate = new Date().toUTCString();
+  const age = Math.floor((new Date(currentDate) - new Date(birthdate)) / 86400000 / 365);
+
   return (
     <div>
       <NameDetail>{`Nama Lengkap: ${profile.name}`}</NameDetail>
       <UsernameDetail>{`Username: ${profile.username}`}</UsernameDetail>
       <BirthdayDetail>{`Tanggal Lahir: ${profile.birthday}`}</BirthdayDetail>
+      <AgeDetail>{`Usia: ${age} tahun`}</AgeDetail>
       <PhoneDetail>{`Nomor HP: ${profile.phone}`}</PhoneDetail>
-      <MyCourseDetail>{`Course Diambil: `}</MyCourseDetail>
+      <MyCourseDetail>{`Course Diambil:`}</MyCourseDetail>
     </div>
   );
 };
+
 
 export default ProfileDetailContainer;

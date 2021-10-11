@@ -1,5 +1,7 @@
 import React from "react";
 import styled from "styled-components";
+import CoursesLibraryComponent from "../components/CoursesLibraryComponent";
+import CourseContainer from "./CourseContainer";
 
 const HomepageCanvas = styled.div`
   border-radius: 0 0 5px 5px;
@@ -7,20 +9,22 @@ const HomepageCanvas = styled.div`
   background: hsl(240, 70%, 30%, 0.25);
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(5, 1fr);
+  grid-template-rows: repeat(8, 1fr);
   grid-template-areas:
     "a a c"
-    "b b c"
-    "b b c"
-    "b b ."
-    "b b .";
+    "b b b"
+    "b b b"
+    "b b b"
+    "b b b"
+    "b b b"
+    "b b b"
+    "b b b";
 `;
 
 const WelcomeMessageContainer = styled.div`
   grid-area: a;
   background: hsl(240, 70%, 70%, 0.1);
   margin: 3px;
-  margin-top: -15px;
   padding-left: 10px;
 `;
 
@@ -39,14 +43,15 @@ const MyCourse = styled.div`
   grid-area: b;
   background: hsl(240, 70%, 30%, 0.1);
   margin: 3px;
+  width: 100%;
 `;
 
 const CoursesLibrary = styled(MyCourse)`
   grid-area: c;
-  background: hsl(240, 70%, 30%, 0.1);
+  background: hsl(240, 70%, 30%, 0.);
 `;
 
-const HomepageContainer = ({courses}) => {
+const HomepageContainer = () => {
   return (
     <HomepageCanvas>
       <WelcomeMessageContainer>
@@ -56,8 +61,8 @@ const HomepageContainer = ({courses}) => {
           courses lainnya.
         </WelcomeMessageBody>
       </WelcomeMessageContainer>
-      <MyCourse>{/*courses.map(course => <CourseContainer key={course.id} course={course} />)*/}</MyCourse>
-      <CoursesLibrary>courseslib</CoursesLibrary>
+      <MyCourse><CourseContainer /></MyCourse>
+      <CoursesLibrary><CoursesLibraryComponent /></CoursesLibrary>
     </HomepageCanvas>
   );
 };
