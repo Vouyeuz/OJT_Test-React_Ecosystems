@@ -28,25 +28,6 @@ const CourseName = styled.h4`
   margin-bottom: 0;
 `;
 
-const CourseProgress = styled.div`
-  grid-area: b;
-  width: 100%;
-  height: 30px;
-  border-radius: 5px;
-  background-color: hsl(120, 10%, 80%);
-  text-align: center;
-  line-height: 30px;
-  color: black;
-  font-weight: 700;
-`;
-
-const CourseProgressBar = styled(CourseProgress)`
-//   width: 70%;
-  width: ${props => props.progress}%;
-  border-radius: 5px;
-  background-color: hsl(120, 90%, 50%);
-
-`;
 
 const CourseStatus = styled.div`
   grid-area: c;
@@ -62,18 +43,13 @@ const CourseStatus = styled.div`
 
 export class CourseItemsComponent extends Component {
   render() {
-    let completionStatus = this.props.isCompleted
-      ? "Completed"
-      : "Learn More";
+    
 
     return (
       <CourseItemCanvas>
         <CourseArea>
           <CourseName>{`${this.props.name}`}</CourseName>
-          <CourseProgress>
-            <CourseProgressBar progress={this.props.progress}>{`${this.props.progress}%`}</CourseProgressBar>
-          </CourseProgress>
-          <CourseStatus completion={this.props.isCompleted}>{completionStatus}</CourseStatus>
+          <CourseStatus completion={this.props.isCompleted}>{this.props.isCompleted}</CourseStatus>
         </CourseArea>
       </CourseItemCanvas>
     );

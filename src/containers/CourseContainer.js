@@ -24,43 +24,37 @@ const CompletedCourses = styled(IncompleteCourses)`
 `;
 
 export class CourseContainer extends Component {
-  static defaultProps = {
+  state = {
     courses: [
       {
         id: 1,
         courseName: "Build Modern Project with React",
-        progress: 100,
-        isCompleted: true,
+        isCompleted: false,
       },
       {
         id: 2,
         courseName: "React Testing and Debugging",
-        progress: 100,
-        isCompleted: true,
+        isCompleted: false,
       },
       {
         id: 3,
         courseName: "Javascript Pattern",
-        progress: 0,
         isCompleted: false,
       },
       {
         id: 4,
         courseName: "Learning Javascript Debugging",
-        progress: 22,
         isCompleted: false,
       },
       {
         id: 5,
         courseName: "Complete Git Guide Understand",
-        progress: 0,
         isCompleted: false,
       },
-      { id: 6, courseName: "Learn Redux", progress: 100, isCompleted: true },
+      { id: 6, courseName: "Learn Redux", isCompleted: false },
       {
         id: 7,
         courseName: "Learn Redux-Thunx",
-        progress: 70,
         isCompleted: false,
       },
       {
@@ -73,25 +67,26 @@ export class CourseContainer extends Component {
   };
   render() {
 
-    const completedCourses = this.props.courses.filter(completed => completed.isCompleted === true);
-    const incompleteCourses = this.props.courses.filter(incomplete => incomplete.isCompleted === false);
-    
+    const completedCourses = this.state.courses.filter(completed => completed.isCompleted === true);
+    const incompleteCourses = this.state.courses.filter(incomplete => incomplete.isCompleted === false);
+    console.log(completedCourses)
+    console.log(incompleteCourses)
+
     return (
       <CourseCanvas>
         <MyCoursesTitle>My Courses List</MyCoursesTitle>
-        <IncompleteCourses isCompleted={this.props.isCompleted}>
+        <IncompleteCourses isCompleted={this.state.isCompleted}>
           Courses In Progress:
         </IncompleteCourses>
         {incompleteCourses.map((course) => (
           <CourseItemsComponent
             key={course.id}
             name={course.courseName}
-            progress={course.progress}
             isCompleted={course.isCompleted}
           />
         ))}
 
-        <CompletedCourses isCompleted={this.props.isCompleted}>
+        <CompletedCourses isCompleted={this.state.isCompleted}>
           Completed Courses:
         </CompletedCourses>
 
@@ -99,7 +94,6 @@ export class CourseContainer extends Component {
           <CourseItemsComponent
             key={course.id}
             name={course.courseName}
-            progress={course.progress}
             isCompleted={course.isCompleted}
           />
         ))}
