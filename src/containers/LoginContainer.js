@@ -116,3 +116,68 @@ const LoginContainer = () => {
 };
 
 export default LoginContainer;
+
+// export class LoginContainer extends Component {
+//   constructor(props) {
+//     super(props);
+
+//     this.state = {
+//       authUser: "fahrizal",
+//       authPass: "12345",
+//       userValue: null,
+//       passValue: null,
+//     };
+//   }
+
+//   inputUser = (event) => {
+//     const value = event.currentTarget.value;
+//     this.setState({ userValue: value === "" ? null : value});
+//     console.log(this.userValue);
+//   }
+
+//   inputPass = (event) => {
+//     const value = event.currentTarget.value;
+//     this.setState({ passValue: value === "" ? null : value});
+//     console.log(this.passValue);
+//   }
+
+//   isAuth = (event) => {
+//     if(userValue === !authUser || passValue === !authPass) {
+//       this.button.disabled = true;
+//       alert(e);
+//     }
+//     event.preventDefault();
+//     return
+//   }
+
+//   render() {
+//     return (
+//       <LoginCanvas>
+//         <LoginForm>
+//           <LoginText>Login</LoginText>
+//           <label>
+//             <InputLabel>Username</InputLabel>
+//             <InputArea
+//               type="text"
+//               placeholder="username..."
+//               onChange={this.inputUser}
+//             />
+//           </label>
+//           <label>
+//             <InputLabel>Password</InputLabel>
+//             <InputArea
+//               type="password"
+//               placeholder="******"
+//               onChange={this.inputPass}
+//             />
+//           </label>
+//           <Link to="/homepage">
+//             <LoginButton onClick={this.isAuth} type="submit">Login</LoginButton>
+//           </Link>
+//         </LoginForm>
+//       </LoginCanvas>
+//     );
+//   }
+// }
+
+// export default LoginContainer;

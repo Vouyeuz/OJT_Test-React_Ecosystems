@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import styled from "styled-components";
 import { hot } from "react-hot-loader";
 import { Login, SignUp, Homepage, Profile, Course, PageHeader } from "./components";
-import { Login } from './containers'
 
 const AppContainer = styled.div`
   box-sizing: border-box;

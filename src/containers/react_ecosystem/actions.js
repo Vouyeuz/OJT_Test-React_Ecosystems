@@ -21,3 +21,8 @@ export const createUser = (text) => ({
   payload: { text },
 });
 
+// export const CREATE_USER = "CREATE_USER";
+// export const createUser = (text) => ({
+//   type: CREATE_USER,
+//   payload: { text },
+// });
