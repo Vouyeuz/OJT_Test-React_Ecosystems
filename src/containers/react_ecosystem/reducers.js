@@ -1,7 +1,6 @@
 import {
   CREATE_USER,
-  USER_LOGIN_SUCCESS,
-  USER_LOGIN_FAIL,
+  USER_LOGIN,
   USER_LOGOUT,
   MARK_COURSE_AS_COMPLETED,
   REMOVE_COURSE,
@@ -49,14 +48,27 @@ export const users = (state = initialState, action) => {
         profiles: state.profiles.concat(newUser),
       };
     }
-    case USER_LOGIN_SUCCESS:
-    case USER_LOGIN_FAIL:
+    case USER_LOGIN: {
+      const {
+        text: { username, password },
+      } = payload;
+      if (
+        {
+          ...state,
+          profiles: state.profiles.some((profile) => {
+            profile.username === username && profile.password === password;
+          }),
+        }
+      ) {
+        return state;
+      }
+    }
     case USER_LOGOUT: {
       const { text } = payload;
       return {
         ...state,
-        profiles: state.profiles.splice(0, text)
-      }
+        profiles: state.profiles.splice(0, text),
+      };
     }
 
     case MARK_COURSE_AS_COMPLETED: {
@@ -71,7 +83,6 @@ export const users = (state = initialState, action) => {
         ...state,
         courses: state.courses.concat(completedCourse),
       };
-      
     }
     case REMOVE_COURSE: {
       const { text } = payload;

@@ -1,6 +1,9 @@
 import React, { useState } from "react";
+import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { userLogin } from "./react_ecosystem/actions";
+import { getAuthUserProfile } from "./react_ecosystem/selectors";
 
 const LoginCanvas = styled.div`
   background-color: white;
@@ -52,13 +55,13 @@ const LoginButton = styled.button`
 `;
 
 const SignUpArea = styled.div`
-margin-top: 2rem;
-padding: 1rem;
-border: 1px solid hsl(240, 30%, 20%, 0.3);
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
+  margin-top: 2rem;
+  padding: 1rem;
+  border: 1px solid hsl(240, 30%, 20%, 0.3);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `;
 
 const SignUpButton = styled.button`
@@ -74,20 +77,20 @@ const SignUpButton = styled.button`
   box-shadow: 2px 4px hsl(240, 30%, 20%, 0.3);
 `;
 
-
-const LoginContainer = () => {
+const LoginContainer = ({ profiles, onClickedAuth }) => {
   const [inputUser, setInputUser] = useState("");
   const [inputPass, setInputPass] = useState("");
 
   return (
     <LoginCanvas>
-      <LoginForm>
+      <LoginForm type="submit">
         <LoginText>Login</LoginText>
         <label>
           <InputLabel>Username</InputLabel>
           <InputArea
             type="text"
             placeholder="username..."
+            required
             value={inputUser}
             onChange={(e) => setInputUser(e.target.value)}
           />
@@ -97,12 +100,41 @@ const LoginContainer = () => {
           <InputArea
             type="password"
             placeholder="******"
+            required
             value={inputPass}
             onChange={(e) => setInputPass(e.target.value)}
           />
         </label>
         <Link to="/homepage">
-          <LoginButton type="submit">Log in</LoginButton>
+          <LoginButton
+            type="submit"
+            onClick={(e) => {
+              const isAuthUser = profiles.some((profile) => {
+                console.log(profile.username);
+                return profile.username === inputUser;
+              });
+              console.log(inputUser);
+              console.log(isAuthUser);
+              const isAuthPass = profiles.some((profile) => {
+                console.log(profile.password);
+                return profile.password === inputPass;
+              });
+              console.log(inputPass);
+              console.log(isAuthPass);
+
+              if (isAuthUser && isAuthPass) {
+                e.preventDefault();
+                onClickedAuth({ inputUser, inputPass });
+                setInputUser("");
+                setInputPass("");
+              } else {
+                alert(`Wrong username or password!`);
+                return false;
+              }
+            }}
+          >
+            Log in
+          </LoginButton>
         </Link>
         <SignUpArea>
           <p>Have no account? Register now!</p>
@@ -115,7 +147,15 @@ const LoginContainer = () => {
   );
 };
 
-export default LoginContainer;
+const mapStateToProps = (state) => ({
+  profiles: getAuthUserProfile(state),
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  onClickedAuth: (text) => dispatch(userLogin(text)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoginContainer);
 
 // export class LoginContainer extends Component {
 //   constructor(props) {
