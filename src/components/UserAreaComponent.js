@@ -15,6 +15,10 @@ const Username = styled.h3`
   color: white;
 `;
 
+const ButtonArea = styled.div`
+  display: flex;
+`;
+
 const LogoutButton = styled.button`
   background: hsl(240, 30%, 88%);
   border-radius: 5px;
@@ -22,21 +26,31 @@ const LogoutButton = styled.button`
   width: 100%;
   height: 1.8rem;
   border: 3px solid;
-  margin-top: -1rem;
   border-color: hsl(240, 30%, 10%, 0.3);
   box-shadow: 2px 4px hsl(240, 30%, 20%, 0.3);
 `;
 
-const UserAreaComponent = ({ profile, onClickedLoggedOut }) => {
+const DeleteButton = styled(LogoutButton)`
+  margin-left: 1.3rem;
+`;
+
+const UserAreaComponent = ({ profile, onClickedLoggedOut, onClickedRemove }) => {
   return (
     <div>
       <UserArea>
         <Username>{`Welcome, ${profile.username}`}</Username>
-        <Link to="/">
-          <LogoutButton onClick={() => onClickedLoggedOut(profile)}>
-            Log out
-          </LogoutButton>
-        </Link>
+        <ButtonArea>
+          <Link to="/">
+            <LogoutButton onClick={() => onClickedLoggedOut(profile)}>
+              Log out
+            </LogoutButton>
+          </Link>
+          <Link to="/">
+            <DeleteButton onClick={() => onClickedRemove(profile)}>
+              Delete
+            </DeleteButton>
+          </Link>
+        </ButtonArea>
       </UserArea>
     </div>
   );

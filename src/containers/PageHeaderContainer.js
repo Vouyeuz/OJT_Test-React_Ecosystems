@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import UserAreaComponent from "../components/UserAreaComponent";
-import { userLogout } from "./react_ecosystem/actions";
+import { removeUser, userLogout } from "./react_ecosystem/actions";
 import { getAuthUserProfile } from "./react_ecosystem/selectors";
 
 const PageHeaderCanvas = styled.div`
@@ -30,7 +30,7 @@ const NavItem = styled.p`
   padding: 1rem;
 `;
 
-const PageHeaderContainer = ({profiles, onClickedLoggedOut }) => {
+const PageHeaderContainer = ({ profiles, onClickedLoggedOut, onClickedRemove }) => {
   return (
     <PageHeaderCanvas>
       {profiles.map((profile) => (
@@ -38,6 +38,7 @@ const PageHeaderContainer = ({profiles, onClickedLoggedOut }) => {
           key={Number.toString()}
           profile={profile}
           onClickedLoggedOut={onClickedLoggedOut}
+          onClickedRemove={onClickedRemove}
         />
       ))}
       <NavArea>
@@ -60,7 +61,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onClickedLoggedOut: (text) => dispatch(userLogout(text)),
+  onClickedLoggedOut: () => dispatch(userLogout()),
+  onClickedRemove: (text) => dispatch(removeUser(text)),
 });
 
 export default connect(
