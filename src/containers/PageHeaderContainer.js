@@ -60,7 +60,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onClickedLoggedOut: () => dispatch(userLogout()),
+  onClickedLoggedOut: (text) => dispatch(userLogout(text)),
 });
 
 export default connect(

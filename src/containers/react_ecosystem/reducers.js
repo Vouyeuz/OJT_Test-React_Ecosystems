@@ -52,9 +52,11 @@ export const users = (state = initialState, action) => {
     case USER_LOGIN_SUCCESS:
     case USER_LOGIN_FAIL:
     case USER_LOGOUT: {
-      // const { text } = payload;
-      // return {
-      // }
+      const { text } = payload;
+      return {
+        ...state,
+        profiles: state.profiles.splice(0, text)
+      }
     }
 
     case MARK_COURSE_AS_COMPLETED: {

@@ -33,7 +33,7 @@ const UserAreaComponent = ({ profile, onClickedLoggedOut }) => {
       <UserArea>
         <Username>{`Welcome, ${profile.username}`}</Username>
         <Link to="/">
-          <LogoutButton onClick={() => onClickedLoggedOut()}>
+          <LogoutButton onClick={() => onClickedLoggedOut(profile)}>
             Log out
           </LogoutButton>
         </Link>
