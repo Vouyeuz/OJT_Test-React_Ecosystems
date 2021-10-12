@@ -2,9 +2,12 @@ import React from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
 import CoursesLibraryComponent from "../components/CoursesLibraryComponent";
+import DashboardCompletedCoursesComponent from "../components/DashboardCompletedCoursesComponent";
 import WelcomeMessageComponent from "../components/WelcomeMessageComponent";
-import CourseContainer from "./CourseContainer";
-import { getAuthUserProfile } from "./react_ecosystem/selectors";
+import {
+  getAuthUserCourses,
+  getAuthUserProfile,
+} from "./react_ecosystem/selectors";
 
 const HomepageCanvas = styled.div`
   border-radius: 0 0 5px 5px;
@@ -31,38 +34,52 @@ const WelcomeMessageContainer = styled.div`
   padding-left: 10px;
 `;
 
-const MyCourse = styled.div`
+const MyCourses = styled.div`
   grid-area: b;
   background: hsl(240, 70%, 30%, 0.1);
   margin: 3px;
-  width: 100%;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
-const CoursesLibrary = styled(MyCourse)`
+const MyCoursesTitle = styled.h1`
+  color: green;
+`;
+
+const CoursesLibrary = styled.div`
   grid-area: c;
   background: hsl(240, 70%, 30%, 0);
 `;
 
-const HomepageContainer = ({ profiles }) => {
+const HomepageContainer = ({ profiles, courses }) => {
   return (
     <HomepageCanvas>
       <WelcomeMessageContainer>
         {profiles.map((profile) => (
-          <WelcomeMessageComponent key={Number.toString()} profile={profile}/> 
+          <WelcomeMessageComponent key={profile.username} profile={profile} coursesCount={courses.map(course => course)} />
         ))}
       </WelcomeMessageContainer>
-      <MyCourse>
-        <CourseContainer />
-      </MyCourse>
+
+      <MyCourses>
+        <MyCoursesTitle>Completed Courses:</MyCoursesTitle>
+        {courses.map((course) => (
+          <DashboardCompletedCoursesComponent
+            key={course.text}
+            course={course}
+          />
+        ))}
+      </MyCourses>
       <CoursesLibrary>
         <CoursesLibraryComponent />
       </CoursesLibrary>
     </HomepageCanvas>
   );
 };
-
 const mapStateToProps = (state) => ({
   profiles: getAuthUserProfile(state),
+  courses: getAuthUserCourses(state),
 });
 
 export default connect(mapStateToProps)(HomepageContainer);

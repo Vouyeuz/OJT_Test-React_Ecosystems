@@ -1,8 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
-import { markCourseAsCompleted, removeCourse } from "./react_ecosystem/actions";
-import { getAuthUserCourses } from "./react_ecosystem/selectors";
+import { removeCourse } from "../containers/react_ecosystem/actions";
 
 const CourseItemCanvas = styled.div`
   background: white;
@@ -11,16 +10,16 @@ const CourseItemCanvas = styled.div`
   margin-bottom: 0.7rem;
   padding: 1rem;
   box-shadow: 4px 8px grey;
+  width:90%;
 `;
 
 const CourseArea = styled.div`
-  width: 40rem;
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: repeat(2, 1fr);
   grid-template-areas:
-    "a a a . b"
-    ". . . . b";
+    "a a a b c"
+    ". . . b c";
 `;
 
 const CourseName = styled.h4`
@@ -36,7 +35,7 @@ const CourseButton = styled.button`
   margin-left: 0.5rem;
   font-weight: 700;
   font-size: 1rem;
-  background: ${(props) => (props.completion ? "green" : "yellow")};
+  background: green;
   border: 1px solid grey;
   border-radius: 5px;
   display: flex;
@@ -44,38 +43,45 @@ const CourseButton = styled.button`
   align-items: center;
 `;
 
+const RemoveButton = styled.button`
+  grid-area: c;
+  margin-left: 0.5rem;
+  font-weight: 700;
+  font-size: 1rem;
+  background: red;
+  border: 1px solid grey;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
 
-
-const CourseItemsComponent = ({courses, course, onClickedCompleted}) => {
-  const courseStatus = course.isCompleted ? "Completed" : "Learn";
-  const courseName = course.courseName;
+const DashboardCompletedCoursesComponent = ({ course, onClickedRemove }) => {
+  const courseStatus = course.isCompleted ? "Completed" : null;
+  const courseName = course.text;
 
   return (
     <CourseItemCanvas>
       <CourseArea>
         <CourseName>{`${courseName}`}</CourseName>
-        <CourseButton
+        <CourseButton>{`${courseStatus}`}</CourseButton>
+        <RemoveButton
           onClick={() => {
-            const isDuplicate = courses.some(course => course.text === courseName);
-            if(!isDuplicate) {
-              onClickedCompleted(courseName);
-            }
+            onClickedRemove(courseName);
           }}
-          completion={course.isCompleted}
-        >{`${courseStatus}`}</CourseButton>
-        
+        >
+          Remove
+        </RemoveButton>
       </CourseArea>
     </CourseItemCanvas>
   );
 };
 
-const mapStateToProps = state => ({
-  courses: getAuthUserCourses(state)
-});
-
 const mapDispatchToProps = (dispatch) => ({
-  onClickedCompleted: (text) => dispatch(markCourseAsCompleted(text)),
   onClickedRemove: (text) => dispatch(removeCourse(text)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(CourseItemsComponent);
+export default connect(
+  null,
+  mapDispatchToProps
+)(DashboardCompletedCoursesComponent);

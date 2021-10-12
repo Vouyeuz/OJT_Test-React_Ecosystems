@@ -19,7 +19,7 @@ import {
 //   },
 // };
 
-const initialState = [];
+const initialState = { profiles: [], courses: [] };
 // authUsers: [
 // ndak perlu dideklarasi dari initialState, biar CREATE_USER pertama itu jadi object index ke[0]. Jadi cukup defined struktur profile user di switch statement. alhamdulillah
 // {
@@ -44,14 +44,16 @@ export const users = (state = initialState, action) => {
         phone: phone,
       };
 
-      return state.concat(newUser);
+      return {
+        ...state,
+        profiles: state.profiles.concat(newUser),
+      };
     }
     case USER_LOGIN_SUCCESS:
     case USER_LOGIN_FAIL:
     case USER_LOGOUT: {
-      // const { text: { username, password, name, birthday, phone } } = payload;
+      // const { text } = payload;
       // return {
-
       // }
     }
 
@@ -59,12 +61,14 @@ export const users = (state = initialState, action) => {
       const { text } = payload;
       // sama saja kayak buat data baru di state, soalnya awalnya cuma ada di local state, bukan di Redux-store.
       const completedCourse = {
-        courses: {
-          text,
-          isCompleted: true,
-        },
+        text,
+        isCompleted: true,
       };
-      return state.concat(completedCourse);
+
+      return {
+        ...state,
+        courses: state.courses.concat(completedCourse),
+      };
       // return state.map((course) => {
       //   if (course.courseName === text) {
       //     return { ...course, isCompleted: true };
@@ -74,7 +78,7 @@ export const users = (state = initialState, action) => {
     }
     case REMOVE_COURSE: {
       const { text } = payload;
-      return state.filter((course) => {
+      return state.courses.filter((course) => {
         course.isCompleted !== text;
       });
     }

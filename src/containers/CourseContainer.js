@@ -1,8 +1,6 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
 import styled from "styled-components";
 import CourseItemsComponent from "./CourseItemsComponent";
-import { markCourseAsCompleted, removeCourse } from "./react_ecosystem/actions";
 
 const CourseCanvas = styled.div`
   border-radius: 0 0 5px 5px;
@@ -34,7 +32,7 @@ export class CourseContainer extends Component {
         {
           id: 1,
           courseName: "Build Modern Project with React",
-          isCompleted: true,
+          isCompleted: false,
         },
         {
           id: 2,
@@ -84,9 +82,9 @@ export class CourseContainer extends Component {
 
     return (
       <CourseCanvas>
-        <MyCoursesTitle>My Courses List</MyCoursesTitle>
+        <MyCoursesTitle>Library of Secret Courses</MyCoursesTitle>
         <IncompleteCourses isCompleted={this.state.isCompleted}>
-          Courses In Progress:
+          Courses Available:
         </IncompleteCourses>
         {incompleteCourses.map((course) => (
           <CourseItemsComponent
@@ -99,27 +97,21 @@ export class CourseContainer extends Component {
           />
         ))}
 
-        <CompletedCourses isCompleted={this.state.isCompleted}>
-          Completed Courses:
-        </CompletedCourses>
+       
 
-        {completedCourses.map((course) => (
+        {/* {completedCourses.map((course) => (
           <CourseItemsComponent
             key={course.id}
             course={course}
-            // courseName={course.courseName}
-            // isCompleted={course.isCompleted}
-            // onClickedRemove={this.onClickedRemove}
+            courseName={course.courseName}
+            isCompleted={course.isCompleted}
+            onClickedRemove={this.onClickedRemove}
           />
-        ))}
+        ))} */}
       </CourseCanvas>
     );
   }
 }
 
-const mapDispatchToProps = (dispatch) => ({
-  // onClickedCompleted: (text) => dispatch(markCourseAsCompleted(text)),
-  // onClickedRemove: (text) => dispatch(removeCourse(text)),
-});
 
-export default connect(null, mapDispatchToProps)(CourseContainer);
+export default CourseContainer;
