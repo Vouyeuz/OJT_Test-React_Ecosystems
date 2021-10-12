@@ -69,18 +69,16 @@ export const users = (state = initialState, action) => {
         ...state,
         courses: state.courses.concat(completedCourse),
       };
-      // return state.map((course) => {
-      //   if (course.courseName === text) {
-      //     return { ...course, isCompleted: true };
-      //   }
-      //   return course;
-      // });
+      
     }
     case REMOVE_COURSE: {
       const { text } = payload;
-      return state.courses.filter((course) => {
-        course.isCompleted !== text;
-      });
+      return {
+        ...state,
+        courses: state.courses.filter((course) => {
+          return course.text !== text;
+        }),
+      };
     }
 
     default:

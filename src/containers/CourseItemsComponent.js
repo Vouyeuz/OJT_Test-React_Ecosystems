@@ -59,6 +59,9 @@ const CourseItemsComponent = ({courses, course, onClickedCompleted}) => {
             const isDuplicate = courses.some(course => course.text === courseName);
             if(!isDuplicate) {
               onClickedCompleted(courseName);
+              alert(`CONGRATULATION! Course: "${courseName}" moved to your dashboard, thank you.`)
+            } else {
+              alert(`WARNING! Course: "${courseName}" have been learned, you may choose another courses.`)
             }
           }}
           completion={course.isCompleted}

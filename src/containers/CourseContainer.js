@@ -19,9 +19,7 @@ const IncompleteCourses = styled.h2`
   color: hsl(60, 100%, 35%);
 `;
 
-const CompletedCourses = styled(IncompleteCourses)`
-  color: hsl(120, 100%, 40%);
-`;
+
 
 export class CourseContainer extends Component {
   constructor(props) {
@@ -63,6 +61,21 @@ export class CourseContainer extends Component {
         {
           id: 8,
           courseName: "Learn Selectors and Styled-Components",
+          isCompleted: false,
+        },
+        {
+          id: 9,
+          courseName: "Learning Webpack",
+          isCompleted: false,
+        },
+        {
+          id: 10,
+          courseName: "ESLint - Checking for Syntax and Logic Errors",
+          isCompleted: false,
+        },
+        {
+          id: 11,
+          courseName: "Learn JIRA Software (2019)",
           isCompleted: false,
         },
       ],

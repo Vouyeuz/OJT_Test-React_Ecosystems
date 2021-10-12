@@ -10,7 +10,7 @@ const CourseItemCanvas = styled.div`
   margin-bottom: 0.7rem;
   padding: 1rem;
   box-shadow: 4px 8px grey;
-  width:90%;
+  width: 80%;
 `;
 
 const CourseArea = styled.div`
@@ -18,8 +18,8 @@ const CourseArea = styled.div`
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: repeat(2, 1fr);
   grid-template-areas:
-    "a a a b c"
-    ". . . b c";
+    "a a a . c"
+    "b b b . c";
 `;
 
 const CourseName = styled.h4`
@@ -30,7 +30,7 @@ const CourseName = styled.h4`
   margin-bottom: 0;
 `;
 
-const CourseButton = styled.button`
+const CourseStatus = styled.div`
   grid-area: b;
   margin-left: 0.5rem;
   font-weight: 700;
@@ -57,14 +57,14 @@ const RemoveButton = styled.button`
 `;
 
 const DashboardCompletedCoursesComponent = ({ course, onClickedRemove }) => {
-  const courseStatus = course.isCompleted ? "Completed" : null;
+  const courseStatus = course.isCompleted ? "Progress Bar Filled ✓" : null;
   const courseName = course.text;
 
   return (
     <CourseItemCanvas>
       <CourseArea>
         <CourseName>{`${courseName}`}</CourseName>
-        <CourseButton>{`${courseStatus}`}</CourseButton>
+        <CourseStatus>{`${courseStatus}`}</CourseStatus>
         <RemoveButton
           onClick={() => {
             onClickedRemove(courseName);
