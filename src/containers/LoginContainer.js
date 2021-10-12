@@ -81,6 +81,19 @@ const LoginContainer = ({ profiles, onClickedAuth }) => {
   const [inputUser, setInputUser] = useState("");
   const [inputPass, setInputPass] = useState("");
 
+  const isAuthUser = profiles.some((profile) => {
+    console.log(`auth username: ${profile.username}`);
+    return profile.username === inputUser;
+  });
+  console.log(inputUser);
+  console.log(isAuthUser);
+  const isAuthPass = profiles.some((profile) => {
+    console.log(`auth password: ${profile.password}`);
+    return profile.password === inputPass;
+  });
+  console.log(inputPass);
+  console.log(isAuthPass);
+
   return (
     <LoginCanvas>
       <LoginForm type="submit">
@@ -105,37 +118,27 @@ const LoginContainer = ({ profiles, onClickedAuth }) => {
             onChange={(e) => setInputPass(e.target.value)}
           />
         </label>
-        <Link to="/homepage">
-          <LoginButton
-            type="submit"
-            onClick={(e) => {
-              const isAuthUser = profiles.some((profile) => {
-                console.log(profile.username);
-                return profile.username === inputUser;
-              });
-              console.log(inputUser);
-              console.log(isAuthUser);
-              const isAuthPass = profiles.some((profile) => {
-                console.log(profile.password);
-                return profile.password === inputPass;
-              });
-              console.log(inputPass);
-              console.log(isAuthPass);
-
-              if (isAuthUser && isAuthPass) {
-                e.preventDefault();
-                onClickedAuth({ inputUser, inputPass });
-                setInputUser("");
-                setInputPass("");
-              } else {
-                alert(`Wrong username or password!`);
-                return false;
-              }
-            }}
+        <LoginButton
+          type="submit"
+          onClick={(e) => {
+            if (isAuthUser && isAuthPass) {
+              e.preventDefault();
+              onClickedAuth({ inputUser, inputPass });
+              setInputUser("");
+              setInputPass("");
+            } else {
+              alert(`Wrong username or password!`);
+              return false;
+            }
+          }}
+        >
+          <Link
+            to={isAuthUser === true && isAuthPass === true ? "/homepage" : "/"}
+            style={{ textDecoration: "none", padding: ".5rem" }}
           >
             Log in
-          </LoginButton>
-        </Link>
+          </Link>
+        </LoginButton>
         <SignUpArea>
           <p>Have no account? Register now!</p>
           <Link to="/signup">

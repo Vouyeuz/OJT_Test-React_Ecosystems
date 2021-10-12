@@ -124,22 +124,25 @@ const SignUpContainer = ({ onClickedCreate }) => {
           <a href="#"> Terms & Privacy</a>.
         </p>
 
-        <Link to="/homepage">
-          <SignUpButton
-            type="submit"
-            onClick={(e) => {
-              e.preventDefault();
-              onClickedCreate({ name, birthday, phone, username, password });
-              setName("");
-              setBirthday("");
-              setPhone("");
-              setUsername("");
-              setPassword("");
-            }}
+        <SignUpButton
+          type="submit"
+          onClick={(e) => {
+            e.preventDefault();
+            onClickedCreate({ name, birthday, phone, username, password });
+            setName("");
+            setBirthday("");
+            setPhone("");
+            setUsername("");
+            setPassword("");
+          }}
+        >
+          <Link
+            to="/homepage"
+            style={{ textDecoration: "none", padding: ".4rem" }}
           >
             Sign Up
-          </SignUpButton>
-        </Link>
+          </Link>
+        </SignUpButton>
 
         <p>
           Already have an account?{" "}
