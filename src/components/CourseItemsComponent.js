@@ -1,8 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
-import { markCourseAsCompleted, removeCourse } from "./react_ecosystem/actions";
-import { getAuthUserCourses } from "./react_ecosystem/selectors";
+import { markCourseAsCompleted, removeCourse } from "../redux/actions";
+import { getAuthUserCourses } from "../redux/selectors";
 
 const CourseItemCanvas = styled.div`
   background: white;
@@ -59,7 +59,7 @@ const CourseItemsComponent = ({courses, course, onClickedCompleted}) => {
             const isDuplicate = courses.some(course => course.text === courseName);
             if(!isDuplicate) {
               onClickedCompleted(courseName);
-              alert(`CONGRATULATION! Course: "${courseName}" moved to your dashboard, thank you.`)
+              alert(`CONGRATULATIONS! Course: "${courseName}" moved to your dashboard, thank you.`)
             } else {
               alert(`WARNING! Course: "${courseName}" have been learned, you may choose another courses.`)
             }

@@ -21,7 +21,7 @@ const PhoneDetail = styled(NameDetail)`
   grid-area: d;
 `;
 
-const ProfileDetailContainer = ({ profile }) => {
+const ProfileDetailComponent = ({ profile }) => {
 
   const birthdate = new Date(profile.birthday).toUTCString();
   let currentDate = new Date().toUTCString();
@@ -39,4 +39,4 @@ const ProfileDetailContainer = ({ profile }) => {
 };
 
 
-export default ProfileDetailContainer;
+export default ProfileDetailComponent;

@@ -1,6 +1,7 @@
-export { default as Login } from "./LoginComponent";
-export { default as SignUp } from "./SignUpComponent";
-export { default as Homepage } from "./HomepageComponent";
-export { default as Profile } from "./ProfileComponent";
-export { default as Course } from "./CourseComponent";
-export { default as PageHeader } from "./PageHeaderComponent";
+export { default as UserAreaComponent } from './UserAreaComponent';
+export { default as NavBarComponent } from './NavBarComponent';
+export { default as WelcomeMessageComponent } from './WelcomeMessageComponent';
+export { default as CoursesLibraryComponent } from './CoursesLibraryComponent';
+export { default as DashboardCompletedCoursesComponent } from './DashboardCompletedCoursesComponent';
+export { default as ProfileDetailComponent } from './ProfileDetailComponent';
+export { default as CourseItemsComponent } from './CourseItemsComponent';

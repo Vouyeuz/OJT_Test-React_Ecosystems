@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { createUser } from "./react_ecosystem/actions";
+import { createUser } from "../redux/actions";
 
 const SignUpCanvas = styled.div`
   background-color: white;

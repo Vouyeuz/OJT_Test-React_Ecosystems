@@ -1,10 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
 import styled from "styled-components";
-import UserAreaComponent from "../components/UserAreaComponent";
-import { removeUser, userLogout } from "./react_ecosystem/actions";
-import { getAuthUserProfile } from "./react_ecosystem/selectors";
+import { removeUser, userLogout } from "../redux/actions";
+import { getAuthUserProfile } from "../redux/selectors";
+import { UserAreaComponent, NavBarComponent } from "../components";
 
 const PageHeaderCanvas = styled.div`
   border-radius: 5px 5px 0 0;
@@ -16,21 +15,11 @@ const PageHeaderCanvas = styled.div`
   position: relative;
 `;
 
-const NavArea = styled.div`
-  position: absolute;
-  top: -10%;
-  left: 63%;
-  display: flex;
-  justify-content: space-evenly;
-`;
-
-const NavItem = styled.p`
-  text-decoratioan: none;
-  color: white;
-  padding: 1rem;
-`;
-
-const PageHeaderContainer = ({ profiles, onClickedLoggedOut, onClickedRemove }) => {
+const PageHeaderContainer = ({
+  profiles,
+  onClickedLoggedOut,
+  onClickedRemove,
+}) => {
   return (
     <PageHeaderCanvas>
       {profiles.map((profile) => (
@@ -41,17 +30,7 @@ const PageHeaderContainer = ({ profiles, onClickedLoggedOut, onClickedRemove }) 
           onClickedRemove={onClickedRemove}
         />
       ))}
-      <NavArea>
-        <Link to="/homepage">
-          <NavItem>Homepage</NavItem>
-        </Link>
-        <Link to="/profile">
-          <NavItem>Profile</NavItem>
-        </Link>
-        <Link to="/course">
-          <NavItem>Courses</NavItem>
-        </Link>
-      </NavArea>
+      <NavBarComponent />
     </PageHeaderCanvas>
   );
 };

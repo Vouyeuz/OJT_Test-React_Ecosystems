@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-const UserArea = styled.div`
+const UserAreaCanvas = styled.div`
   display: flex;
   flex-direction: column;
   padding: 0;
@@ -15,7 +15,7 @@ const Username = styled.h3`
   color: white;
 `;
 
-const ButtonArea = styled.div`
+const ButtonAreaCanvas = styled.div`
   display: flex;
 `;
 
@@ -37,9 +37,9 @@ const DeleteButton = styled(LogoutButton)`
 const UserAreaComponent = ({ profile, onClickedLoggedOut, onClickedRemove }) => {
   return (
     <div>
-      <UserArea>
+      <UserAreaCanvas>
         <Username>{`Welcome, ${profile.username}`}</Username>
-        <ButtonArea>
+        <ButtonAreaCanvas>
           <Link to="/">
             <LogoutButton onClick={() => onClickedLoggedOut(profile)}>
               Log out
@@ -50,8 +50,8 @@ const UserAreaComponent = ({ profile, onClickedLoggedOut, onClickedRemove }) => 
               Delete
             </DeleteButton>
           </Link>
-        </ButtonArea>
-      </UserArea>
+        </ButtonAreaCanvas>
+      </UserAreaCanvas>
     </div>
   );
 };

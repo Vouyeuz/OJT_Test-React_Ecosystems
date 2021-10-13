@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import CourseItemsComponent from "./CourseItemsComponent";
+import { CourseItemsComponent } from "../components";
 
 const CourseCanvas = styled.div`
   border-radius: 0 0 5px 5px;
@@ -19,9 +19,7 @@ const IncompleteCourses = styled.h2`
   color: hsl(60, 100%, 35%);
 `;
 
-
-
-export class CourseContainer extends Component {
+export class CoursesContainer extends Component {
   constructor(props) {
     super(props);
 
@@ -109,8 +107,6 @@ export class CourseContainer extends Component {
           />
         ))}
 
-       
-
         {/* {completedCourses.map((course) => (
           <CourseItemsComponent
             key={course.id}
@@ -125,5 +121,4 @@ export class CourseContainer extends Component {
   }
 }
 
-
-export default CourseContainer;
+export default CoursesContainer;

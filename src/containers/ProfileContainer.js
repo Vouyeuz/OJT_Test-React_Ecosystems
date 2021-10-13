@@ -1,8 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
-import ProfileDetailContainer from "./ProfileDetailContainer";
-import { getAuthUserProfile } from "./react_ecosystem/selectors";
+import { getAuthUserProfile } from "../redux/selectors";
+import { ProfileDetailComponent } from "../components";
 
 const ProfileCanvas = styled.div`
   border-radius: 0 0 5px 5px;
@@ -22,14 +22,13 @@ const ProfileForm = styled.div`
     "e";
 `;
 
-
 const ProfileContainer = ({ profiles }) => {
   return (
     <ProfileCanvas>
       <ProfileForm>
         {profiles.map((profile) => (
-          <ProfileDetailContainer key={Number.toString()} profile={profile} />
-          ))}
+          <ProfileDetailComponent key={Number.toString()} profile={profile} />
+        ))}
       </ProfileForm>
     </ProfileCanvas>
   );
