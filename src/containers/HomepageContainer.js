@@ -1,13 +1,12 @@
 import React from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
-import CoursesLibraryComponent from "../components/CoursesLibraryComponent";
-import DashboardCompletedCoursesComponent from "../components/DashboardCompletedCoursesComponent";
-import WelcomeMessageComponent from "../components/WelcomeMessageComponent";
+import { getAuthUserCourses, getAuthUserProfile } from "../redux/selectors";
 import {
-  getAuthUserCourses,
-  getAuthUserProfile,
-} from "./react_ecosystem/selectors";
+  WelcomeMessageComponent,
+  CoursesLibraryComponent,
+  DashboardCompletedCoursesComponent,
+} from "../components";
 
 const HomepageCanvas = styled.div`
   border-radius: 0 0 5px 5px;
@@ -27,14 +26,14 @@ const HomepageCanvas = styled.div`
     "b b b";
 `;
 
-const WelcomeMessageContainer = styled.div`
+const WelcomeMessageCanvas = styled.div`
   grid-area: a;
   background: hsl(240, 70%, 70%, 0.1);
   margin: 3px;
   padding-left: 10px;
 `;
 
-const MyCourses = styled.div`
+const MyCoursesCanvas = styled.div`
   grid-area: b;
   background: hsl(240, 70%, 30%, 0.1);
   margin: 3px;
@@ -48,7 +47,7 @@ const MyCoursesTitle = styled.h1`
   color: green;
 `;
 
-const CoursesLibrary = styled.div`
+const CoursesLibraryCanvas = styled.div`
   grid-area: c;
   background: hsl(240, 70%, 30%, 0);
 `;
@@ -56,13 +55,17 @@ const CoursesLibrary = styled.div`
 const HomepageContainer = ({ profiles, courses }) => {
   return (
     <HomepageCanvas>
-      <WelcomeMessageContainer>
+      <WelcomeMessageCanvas>
         {profiles.map((profile) => (
-          <WelcomeMessageComponent key={profile.username} profile={profile} coursesCount={courses.map(course => course)} />
+          <WelcomeMessageComponent
+            key={profile.username}
+            profile={profile}
+            coursesCount={courses.map((course) => course)}
+          />
         ))}
-      </WelcomeMessageContainer>
+      </WelcomeMessageCanvas>
 
-      <MyCourses>
+      <MyCoursesCanvas>
         <MyCoursesTitle>Completed Courses:</MyCoursesTitle>
         {courses.map((course) => (
           <DashboardCompletedCoursesComponent
@@ -70,10 +73,10 @@ const HomepageContainer = ({ profiles, courses }) => {
             course={course}
           />
         ))}
-      </MyCourses>
-      <CoursesLibrary>
+      </MyCoursesCanvas>
+      <CoursesLibraryCanvas>
         <CoursesLibraryComponent />
-      </CoursesLibrary>
+      </CoursesLibraryCanvas>
     </HomepageCanvas>
   );
 };

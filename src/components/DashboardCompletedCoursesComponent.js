@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
-import { removeCourse } from "../containers/react_ecosystem/actions";
+import { removeCourse } from "../redux/actions";
 
 const CourseItemCanvas = styled.div`
   background: white;
