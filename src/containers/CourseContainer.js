@@ -80,6 +80,7 @@ export class CourseContainer extends Component {
         },
       ],
     };
+    // kok ndak bisa pass function ya pake bind?
     // this.onClickedCompleted = this.onClickedCompleted.bind(this);
     // this.onClickedRemove = this.onClickedRemove.bind(this);
   }
@@ -87,11 +88,9 @@ export class CourseContainer extends Component {
     const incompleteCourses = this.state.courses.filter(
       (incomplete) => incomplete.isCompleted === false
     );
-    const completedCourses = this.state.courses.filter(
-      (completed) => completed.isCompleted === true
-    );
-    console.log(completedCourses);
-    console.log(incompleteCourses);
+    // const completedCourses = this.state.courses.filter(
+    //   (completed) => completed.isCompleted === true
+    // );
 
     return (
       <CourseCanvas>
